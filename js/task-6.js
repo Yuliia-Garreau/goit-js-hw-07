@@ -7,21 +7,25 @@ buttonCreate.addEventListener("click", createBoxes);
 buttonDestroy.addEventListener("click", destroyBoxes);
 
 function createBoxes(amount) {
-  if (input.value < 1 || input.value > 100) {
+  if (Number(input.value) < 1 || Number(input.value) > 100) {
     return;
   }
-  for (let i = 0; i < input.value; i++) {
+  boxes.innerHTML = "";
+  const arr = [];
+  for (let i = 0; i < Number(input.value); i++) {
     const divBox = document.createElement("div");
     divBox.style.width = `${30 + i * 10}px`;
     divBox.style.height = `${30 + i * 10}px`;
     divBox.style.backgroundColor = getRandomHexColor();
-    boxes.appendChild(divBox);
+    arr.push(divBox);
   }
+  boxes.append(...arr);
   input.value = "";
 }
 
 function destroyBoxes() {
   boxes.innerHTML = "";
+  input.value = "";
 }
 
 function getRandomHexColor() {
